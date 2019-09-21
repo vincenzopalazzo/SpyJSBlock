@@ -1,7 +1,7 @@
 node_modules/
 .tmp/
 package-lock.json
-
+.publish
 
 /node_modules
 npm-debug.log

@@ -1,5 +1,5 @@
 // generated on 2019-08-08 using generator-webapp 4.0.0-6
-const { src, dest, watch, series, parallel, lastRun } = require('gulp');
+const { src, dest, watch, series, parallel, lastRun, gulp } = require('gulp');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
@@ -9,6 +9,8 @@ const del = require('del');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const { argv } = require('yargs');
+const ghPages = require('gulp-gh-pages');
+
 
 const $ = gulpLoadPlugins();
 const server = browserSync.create();
@@ -18,6 +20,19 @@ const port = argv.port || 9000;
 const isProd = process.env.NODE_ENV === 'production';
 const isTest = process.env.NODE_ENV === 'test';
 const isDev = !isProd && !isTest;
+
+function copy(done) {
+  grunt.tasks(
+      ['copy:main'],    //you can add more grunt tasks in this array
+      {gruntfile: false}, //don't look for a Gruntfile - there is none. :-)
+      function () {done();}
+  );
+}
+
+function deploy(){
+  return gulp.src('dist/**/*')
+    .pipe($.ghPages());
+}
 
 function styles() {
   return src('app/styles/*.scss')
@@ -217,4 +232,5 @@ if (isDev) {
 
 exports.serve = serve;
 exports.build = build;
+exports.deploy = deploy;
 exports.default = build;
