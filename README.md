@@ -10,5 +10,8 @@ And the application have the minimal chart for benchmark application
 
 For install the demo you can run this command
 
+```
 git clone https://github.com/vincenzopalazzo/SpyJSBlocks.git
 cd SpyJSBlocks && npm install && gulp serve
+
+```
