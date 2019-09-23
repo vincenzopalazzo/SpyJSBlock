@@ -91,10 +91,9 @@ function readWithParsing(pathFile, graph) {
           graph.addNode(String(elements[elements.length]));
           console.debug('Element last: ' + elements[elements.length - 1]);
           graph.addLink(String(elements[0]), String(elements[elements.length - 1]))
-          /*
           if(j === 5000){
             return;
-          }-*/
+          }
         }
 
         console.debug('Line read is: ' + lines);
