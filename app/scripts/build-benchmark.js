@@ -25,7 +25,7 @@ let containerChart = document.getElementById('benchmark-chart').getContext('2d')
 var chartBenchmark = new Chart(containerChart, {
   type: 'bar',
   data: {
-    labels: ['JSON', 'Graph Transactions'],
+    labels: ['Graph Transactions', 'JSON'],
   },
   borderWidth: 2,
   options: {

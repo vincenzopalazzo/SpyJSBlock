@@ -30,7 +30,7 @@ function copy(done) {
 }
 
 function deploy(){
-  return gulp.src('dist/**/*')
+  return src('dist/**/*')
     .pipe($.ghPages());
 }
 

@@ -19,7 +19,8 @@ function main() {
       layout     : layout,
       graphics   : graphics,
       container: document.getElementById('graph-container'),
-      renderLinks : true
+      renderLinks : true,
+      prerender  : true,
     });
 
   renderer.run();
@@ -68,7 +69,7 @@ function createGraphIDFromFile() {
 function createGraphFromFile() {
   var graph = Viva.Graph.graph();
 
-  var numbarBlock = 0;
+  var numbarBlock = 32;
 
   var nameFile = readFile('resources/tx/', '_tx.txt', numbarBlock);
   console.log('Name file: ' + nameFile);
@@ -91,9 +92,11 @@ function readWithParsing(pathFile, graph) {
           graph.addNode(String(elements[elements.length]));
           console.debug('Element last: ' + elements[elements.length - 1]);
           graph.addLink(String(elements[0]), String(elements[elements.length - 1]))
+/*
+//Only for demo Github
           if(j === 5000){
             return;
-          }
+          }*/
         }
 
         console.debug('Line read is: ' + lines);
@@ -118,5 +121,3 @@ function readFile(pathInput, exstension, numberBlock) {
   }
   return undefined;
 }
-
-
