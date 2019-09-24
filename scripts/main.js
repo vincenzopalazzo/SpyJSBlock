@@ -13,7 +13,36 @@ function main() {
     layout: layout,
     graphics: graphics,
     container: document.getElementById('graph-container'),
-    renderLinks: true
+    renderLinks: true,
+    prerender: true
+  });
+  var events = Viva.Graph.webglInputEvents(graphics, graph);
+  events.click(function (node) {
+    mcxDialog.confirm("The tx id of the node is: " + node.id, {
+      animationType: "zoom",
+      width: 550,
+      height: 200,
+      titleStyle: {
+        color: "#ffbd39",
+        background: "#212121"
+      },
+      buttonStyle: [{
+        color: "#ffbd39",
+        border: "1px solid #323232",
+        backgroundColor: "#323232"
+      }, {
+        color: "#FFFFFF",
+        border: "1px solid #323232",
+        backgroundColor: "#323232"
+      }],
+      title: 'Info node',
+      btn: ['Find on Blockstream', 'Close'],
+      btnClick: function (index) {
+        if (index === 0) {
+          window.open("https://blockstream.info/tx/" + node.id);
+        }
+      }
+    });
   });
   renderer.run();
 }
@@ -57,6 +86,7 @@ function createGraphFromFile() {
 }
 
 function readWithParsing(pathFile, graph) {
+  mmdShowToast("Take a Coffe ☕");
   let txtFile = new XMLHttpRequest();
   txtFile.open('GET', pathFile, true);
 
@@ -73,13 +103,16 @@ function readWithParsing(pathFile, graph) {
           graph.addNode(String(elements[0]));
           graph.addNode(String(elements[elements.length]));
           console.debug('Element last: ' + elements[elements.length - 1]);
-          graph.addLink(String(elements[0]), String(elements[elements.length - 1]));
+          graph.addLink(String(elements[0]), String(elements[elements.length - 1])); //Only for demo Github
 
           if (j === 5000) {
+            mmdShowToast('Loaded 500 transactions');
+            mmdShowToast('Clik on node for explore it');
             return;
           }
         }
 
+        mmdShowToast('Loaded ' + txtFile.responseText.split('\n').length + " transactions");
         console.debug('Line read is: ' + lines);
         console.debug('End file');
       }

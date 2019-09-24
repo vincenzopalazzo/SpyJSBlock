@@ -8,7 +8,7 @@ let containerChart = document.getElementById('benchmark-chart').getContext('2d')
 var chartBenchmark = new Chart(containerChart, {
   type: 'bar',
   data: {
-    labels: ['Graph Transactions', 'JSON'],
+    labels: ['Graph Transactions', 'JSON']
   },
   borderWidth: 2,
   options: {
