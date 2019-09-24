@@ -1,5 +1,4 @@
 function main() {
-
   //Grading graph
   var graph = createGraphFromFile();
 
@@ -21,6 +20,37 @@ function main() {
       container: document.getElementById('graph-container'),
       renderLinks : true,
       prerender  : true,
+    });
+
+    var events = Viva.Graph.webglInputEvents(graphics, graph);
+
+    events.click(function (node) {
+        mcxDialog.confirm('The tx id of the node is: ' + node.id,{
+          animationType: 'zoom',
+          width: 550,  
+          height: 200, 
+          titleStyle: {
+            color: '#ffbd39',
+            background: '#212121'
+          },
+          buttonStyle: [{
+						color: '#ffbd39',
+						border: '1px solid #323232',
+						backgroundColor: '#323232'
+					},{
+						color: '#FFFFFF',
+						border: '1px solid #323232',
+						backgroundColor: '#323232'
+					}
+          ],
+          title: 'Info node',
+          btn: ['Find on Blockstream', 'Close'],
+          btnClick: function(index){  
+            if(index === 0){
+              window.open('https://blockstream.info/tx/' + node.id);
+            }
+          }
+        });
     });
 
   renderer.run();
@@ -51,6 +81,37 @@ function mainTwo() {
       renderLinks : true
     });
 
+    var events = Viva.Graph.webglInputEvents(graphics, graph);
+
+    events.click(function (node) {
+        mcxDialog.confirm('The address is: ' + node.id,{
+          animationType: 'zoom',
+          width: 550,  
+          height: 200, 
+          titleStyle: {
+            color: '#ffbd39',
+            background: '#212121'
+          },
+          buttonStyle: [{
+						color: '#ffbd39',
+						border: '1px solid #323232',
+						backgroundColor: '#323232'
+					},{
+						color: '#FFFFFF',
+						border: '1px solid #323232',
+						backgroundColor: '#323232'
+					}
+          ],
+          title: 'Info node',
+          btn: ['Find on Blockstream', 'Close'],
+          btnClick: function(index){  
+            if(index === 0){
+              window.open(' https://blockstream.info/address/' + node.id);
+            }
+          }
+        });
+    });
+
   renderer.run();
 
 }
@@ -78,7 +139,7 @@ function createGraphFromFile() {
 }
 
 function readWithParsing(pathFile, graph) {
-
+  mmdShowToast('Take a Coffe ☕');
   let txtFile = new XMLHttpRequest();
   txtFile.open('GET', pathFile, true);
   txtFile.onreadystatechange = function(){
@@ -92,19 +153,21 @@ function readWithParsing(pathFile, graph) {
           graph.addNode(String(elements[elements.length]));
           console.debug('Element last: ' + elements[elements.length - 1]);
           graph.addLink(String(elements[0]), String(elements[elements.length - 1]))
-/*
-//Only for demo Github
-          if(j === 5000){
+          //Only for demo Github
+           if(j === 5000){
+            mmdShowToast('Loaded 1000 nodes');
+            mmdShowToast('Click on node for explore it');            
             return;
-          }*/
+          }
         }
-
+        mmdShowToast('Loaded ' + txtFile.responseText.split('\n').length * 2 + ' nodes');
         console.debug('Line read is: ' + lines);
         console.debug('End file');
       }
     }
   };
   txtFile.send(null);
+  
 }
 
 function readFile(pathInput, exstension, numberBlock) {

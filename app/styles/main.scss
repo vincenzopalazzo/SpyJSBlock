@@ -124,7 +124,7 @@
 }
 
 .demo-tab-pane{
-  alignment: center;
+  align-content: center;
 }
 
 .title-demo{
@@ -144,3 +144,48 @@
   }
 }
 
+/*Css for toast*/
+.mmd-toast-div{
+  font-size: 20px;
+  border-radius: 2px;
+  border: 1px solid #323232;
+  background-color:#323232;
+  z-index:999;
+  width: 20em;
+  opacity: 0.5;
+  position:fixed;
+  left: 45%;
+  right: 45%;
+  top: 50%;
+  margin-left: -100px; /* 50% of width */
+  margin-top: -100px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+  padding: 0, 1em, 0, 1em;
+  .mmd-toast-p{
+    text-align: center;
+    color: $personal-lime;
+    font-weight: bold;
+  }
+}
+
+
+/*Css for dialog*/
+.mcx-dialog-bg{
+  color: white !important;
+  background: $personal-dark-lite !important;
+}
+.mcx-dialog{
+  font-size: 18px;
+  .dialog-content{
+    color: white !important;
+    background: $personal-dark-lite !important;
+  }
+  .dialog-head{
+    color: white !important;
+    background: $personal-dark-lite !important;
+  }
+  .dialog-foot{
+    color: white !important;
+    background: $personal-dark-lite !important
+  }
+}
