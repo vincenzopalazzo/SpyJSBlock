@@ -52,9 +52,7 @@ function main() {
           }
         });
     });
-
   renderer.run();
-
 }
 
 function mainTwo() {
@@ -111,7 +109,7 @@ function mainTwo() {
           }
         });
     });
-
+  
   renderer.run();
 
 }
@@ -153,14 +151,15 @@ function readWithParsing(pathFile, graph) {
           graph.addNode(String(elements[elements.length]));
           console.debug('Element last: ' + elements[elements.length - 1]);
           graph.addLink(String(elements[0]), String(elements[elements.length - 1]))
-          //Only for demo Github
+         /* //Only for demo Github
            if(j === 5000){
             mmdShowToast('Loaded 1000 nodes');
             mmdShowToast('Click on node for explore it');            
             return;
-          }
+          }*/
         }
         mmdShowToast('Loaded ' + txtFile.responseText.split('\n').length * 2 + ' nodes');
+        mmdShowToast('Click on node for explore it'); 
         console.debug('Line read is: ' + lines);
         console.debug('End file');
       }
