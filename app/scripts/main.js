@@ -159,11 +159,11 @@ function readWithParsing(pathFile, graph) {
           console.debug('Element last: ' + elements[elements.length - 1]);
           graph.addLink(String(elements[0]), String(elements[elements.length - 1]))
           //Only for demo Github
-           if(j === 5000){
+         /*  if(j === 5000){
             mmdShowToast('Loaded 1000 nodes');
             mmdShowToast('Click on node for explore it');            
             return;
-          }
+          }*/
         }
         mmdShowToast('Loaded ' + txtFile.responseText.split('\n').length * 2 + ' nodes');
         mmdShowToast('Click on node for explore it'); 
