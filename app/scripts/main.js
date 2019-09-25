@@ -1,4 +1,9 @@
+let renderer = null;
+
 function main() {
+  if(renderer != null){
+    location.reload();
+  }
   //Grading graph
   var graph = createGraphFromFile();
 
@@ -12,8 +17,7 @@ function main() {
 
   var graphics = Viva.Graph.View.webglGraphics();
 
-
-  var renderer = Viva.Graph.View.renderer(graph,
+  renderer = Viva.Graph.View.renderer(graph,
     {
       layout     : layout,
       graphics   : graphics,
@@ -56,6 +60,10 @@ function main() {
 }
 
 function mainTwo() {
+  
+  if(renderer != null){
+    location.reload();
+  }
 
   //Grading graph
   var graph = createGraphIDFromFile();
@@ -70,8 +78,7 @@ function mainTwo() {
 
   var graphics = Viva.Graph.View.webglGraphics();
 
-
-  var renderer = Viva.Graph.View.renderer(graph,
+  renderer = Viva.Graph.View.renderer(graph,
     {
       layout     : layout,
       graphics   : graphics,
@@ -151,12 +158,12 @@ function readWithParsing(pathFile, graph) {
           graph.addNode(String(elements[elements.length]));
           console.debug('Element last: ' + elements[elements.length - 1]);
           graph.addLink(String(elements[0]), String(elements[elements.length - 1]))
-         /* //Only for demo Github
+          //Only for demo Github
            if(j === 5000){
             mmdShowToast('Loaded 1000 nodes');
             mmdShowToast('Click on node for explore it');            
             return;
-          }*/
+          }
         }
         mmdShowToast('Loaded ' + txtFile.responseText.split('\n').length * 2 + ' nodes');
         mmdShowToast('Click on node for explore it'); 
@@ -182,4 +189,16 @@ function readFile(pathInput, exstension, numberBlock) {
     return pathInput + 'blk0' + String(numberBlock) + exstension;
   }
   return undefined;
+}
+
+function stopRenderd(){
+  renderer.pause();
+}
+
+function resumeRenderd(){
+  renderer.resume();
+}
+
+function resetRendered(){
+  renderer.reset();
 }
