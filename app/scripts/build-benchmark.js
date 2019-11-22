@@ -40,7 +40,6 @@ var chartBenchmark = new Chart(containerChart, {
 });
 
 
-
 function readResourcesFileFetch(pathFile) {
   return fetch(pathFile, {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
@@ -67,10 +66,10 @@ function readAllBenchmarkFetch() {
         console.debug('File benchmark: \n' + files[i] + ' with data\n', fileBenchmark);
         console.log('Real time one: ', fileBenchmark.benchmarks[0].real_time / 1000000000.0);
         console.log('Real time two: ', fileBenchmark.benchmarks[1].real_time / 1000000000.0);
-
+        let ramdomPos = Math.floor(Math.random() * colors.length) | 0; 
         updateBarGraph(chartBenchmark, files[i].replace('.json', ''),
-          colors.backgroundColor[i],
-          colors.borderColor[i],
+          colors.backgroundColor[ramdomPos],
+          colors.borderColor[ramdomPos],
           [
             fileBenchmark.benchmarks[0].real_time / 1000000000.0,
             fileBenchmark.benchmarks[1].real_time / 1000000000.0

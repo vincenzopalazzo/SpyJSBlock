@@ -1,6 +1,11 @@
 {
   "files": [
     "i5-6300U@4x_3GH_gcc7.4.0.json",
-    "i7-4790@8x4GHz-gcc-7.4.0.json"
+    "i7-4790@8x4GHz-gcc-7.4.0.json",
+    "i5-6300U@4x_3GH_gcc8.2.0_no_witness.json",
+    "i5-6300U@4x_3GH_gcc8.2.0_witness.json"
+  ],
+  "scalabilityFile": [
+    "OneFile.temp"
   ]
 }

@@ -31,8 +31,8 @@ function main() {
     events.click(function (node) {
         mcxDialog.confirm('The tx id of the node is: ' + node.id,{
           animationType: 'zoom',
-          width: 550,  
-          height: 200, 
+          width: 550,
+          height: 200,
           titleStyle: {
             color: '#ffbd39',
             background: '#212121'
@@ -49,7 +49,7 @@ function main() {
           ],
           title: 'Info node',
           btn: ['Find on Blockstream', 'Close'],
-          btnClick: function(index){  
+          btnClick: function(index){
             if(index === 0){
               window.open('https://blockstream.info/tx/' + node.id);
             }
@@ -60,7 +60,7 @@ function main() {
 }
 
 function mainTwo() {
-  
+
   if(renderer != null){
     location.reload();
   }
@@ -82,7 +82,7 @@ function mainTwo() {
     {
       layout     : layout,
       graphics   : graphics,
-      container: document.getElementById('graph-container'),
+      container  : document.getElementById('graph-container'),
       renderLinks : true
     });
 
@@ -91,8 +91,8 @@ function mainTwo() {
     events.click(function (node) {
         mcxDialog.confirm('The address is: ' + node.id,{
           animationType: 'zoom',
-          width: 550,  
-          height: 200, 
+          width: 550,
+          height: 200,
           titleStyle: {
             color: '#ffbd39',
             background: '#212121'
@@ -109,22 +109,20 @@ function mainTwo() {
           ],
           title: 'Info node',
           btn: ['Find on Blockstream', 'Close'],
-          btnClick: function(index){  
+          btnClick: function(index){
             if(index === 0){
               window.open(' https://blockstream.info/address/' + node.id);
             }
           }
         });
     });
-  
   renderer.run();
-
 }
 
 function createGraphIDFromFile() {
   var graph = Viva.Graph.graph();
 
-  var numbarBlock = 0;
+  var numbarBlock = 450;
 
   var nameFile = readFile('resources/pubKey/', '-idw.txt', numbarBlock);
   console.log('Name file: ' + nameFile);
@@ -135,7 +133,7 @@ function createGraphIDFromFile() {
 function createGraphFromFile() {
   var graph = Viva.Graph.graph();
 
-  var numbarBlock = 32;
+  var numbarBlock = 0;
 
   var nameFile = readFile('resources/tx/', '_tx.txt', numbarBlock);
   console.log('Name file: ' + nameFile);
@@ -155,25 +153,24 @@ function readWithParsing(pathFile, graph) {
           let elements = lines[j].split('|-|');
           console.debug('Element first: ' + elements[0]);
           graph.addNode(String(elements[0]));
-          graph.addNode(String(elements[elements.length]));
+          graph.addNode(String(elements[elements.length - 1]));
           console.debug('Element last: ' + elements[elements.length - 1]);
           graph.addLink(String(elements[0]), String(elements[elements.length - 1]))
           //Only for demo Github
-         /*  if(j === 5000){
+          /* if(j === 5000){
             mmdShowToast('Loaded 1000 nodes');
-            mmdShowToast('Click on node for explore it');            
+            mmdShowToast('Click on node for explore it');
             return;
           }*/
         }
         mmdShowToast('Loaded ' + txtFile.responseText.split('\n').length * 2 + ' nodes');
-        mmdShowToast('Click on node for explore it'); 
+        mmdShowToast('Click on node for explore it');
         console.debug('Line read is: ' + lines);
         console.debug('End file');
       }
     }
   };
   txtFile.send(null);
-  
 }
 
 function readFile(pathInput, exstension, numberBlock) {
